@@ -25,6 +25,10 @@ function init() {
 
 	}
 
+	canvas.onmousemove = function(evt) {
+		log('mouse moved on canvas!');
+	}
+
 
 }
 
