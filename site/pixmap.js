@@ -7,6 +7,7 @@ window.addEventListener('load', init);
 
 var body, canvas, ctx, image;
 
+
 function init() {
 	log('Window loaded!');
 
@@ -31,18 +32,53 @@ function imageLoaded() {
 	log('image loaded!');
 	ctx.drawImage(image, 0, 0);
 
+	sampleidata = ctx.getImageData(0, 0, canvas.height, canvas.width);
+	Pixel.init(sampleidata);
+
 	coords = { x: 450, y: 430}
 
 	var newidata = ctx.createImageData(1, 1);
-	log(newidata.data);
 	newidata.data[0] = 255;
 	newidata.data[3] = 255;
 
 	ctx.putImageData(newidata, coords.x, coords.y);
-	log(newidata);
+
+	var p = new Pixel(450, 430);
+	log(p);
+
+
 }
 
 
+
+
+
+function Pixel(x, y) {
+
+	this.x = x;
+	this.y = y;
+
+	// Uint8ClammpedArray.
+	this.sourceDataIndex = Pixel.sourceDataIndex(x, y);
+	this.pixelData = Pixel.sourceImageData.data.slice(this.sourceDataIndex, this.sourceDataIndex+4);
+
+	this.r = this.pixelData[0];
+	this.g = this.pixelData[1];
+	this.b = this.pixelData[2];
+	this.a = this.pixelData[3];
+
+}
+
+
+Pixel.init = (function(sourceImageData) {
+	Pixel.sourceImageData = sourceImageData;
+})
+
+Pixel.sourceDataIndex = (function(x, y) {
+	var data = Pixel.sourceImageData.data;
+	return (Pixel.sourceImageData.width*y + x) * 4;
+
+});
 
 
 
