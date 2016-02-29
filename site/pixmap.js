@@ -23,8 +23,18 @@ function init() {
 		log('image loaded!');
 		ctx.drawImage(image, 0, 0);
 
-		var idata = ctx.getImageData(canvas.width/2, canvas.height/2, 1, 1);
-		log(idata);
+		coords = { x: 450, y: 430}
+
+		// var idata = ctx.getImageData(canvas.width/2, canvas.height/2, 1, 1);
+		// log(idata);
+
+		var newidata = ctx.createImageData(1, 1);
+		log(newidata.data);
+		newidata.data[0] = 255;
+		newidata.data[3] = 255;
+
+		ctx.putImageData(newidata, coords.x, coords.y);
+		log(newidata);
 
 	}
 
