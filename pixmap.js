@@ -7,6 +7,14 @@ window.addEventListener('load', init);
 
 function init() {
 	log('Window loaded!');
+
+	var body = document.getElementsByTagName('body')[0];
+	log(body);
+
+	var canvas = createDom('canvas');
+	body.appendChild(canvas);
+
+
 }
 
 
