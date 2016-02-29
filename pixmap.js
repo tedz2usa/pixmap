@@ -12,6 +12,8 @@ function init() {
 	log(body);
 
 	var canvas = createDom('canvas');
+	canvas.width = '900';
+	canvas.height = '900';
 	body.appendChild(canvas);
 
 
