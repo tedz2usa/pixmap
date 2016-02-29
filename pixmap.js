@@ -11,9 +11,7 @@ function init() {
 	var body = document.getElementsByTagName('body')[0];
 	log(body);
 
-	var canvas = createDom('canvas');
-	canvas.width = '900';
-	canvas.height = '900';
+	var canvas = createCanvas(null, 900, 900);
 	body.appendChild(canvas);
 
 
@@ -24,7 +22,12 @@ function init() {
 
 
 
-
+function createCanvas(classes, width, height) {
+	var elem = createDom('canvas', classes);
+	elem.width = width;
+	elem.height = height;
+	return elem;
+}
 
 function createDiv(classes) {
 	return createDom('div', classes);
