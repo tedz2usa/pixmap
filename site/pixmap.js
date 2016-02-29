@@ -23,11 +23,16 @@ function init() {
 		log('image loaded!');
 		ctx.drawImage(image, 0, 0);
 
+		var idata = ctx.getImageData(canvas.width/2, canvas.height/2, 1, 1);
+		log(idata);
+
 	}
 
 	canvas.onmousemove = function(evt) {
 		log(evt.offsetX, evt.offsetY);
 	}
+
+
 
 
 }
