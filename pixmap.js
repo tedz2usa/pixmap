@@ -14,6 +14,17 @@ function init() {
 	var canvas = createCanvas(null, 900, 900);
 	body.appendChild(canvas);
 
+	var ctx = canvas.getContext('2d');
+
+	var image = new Image();
+	image.src = 'text_sample_big.png';
+
+	image.onload = function() {
+		log('image loaded!');
+		ctx.drawImage(image, 0, 0);
+
+	}
+
 
 }
 
