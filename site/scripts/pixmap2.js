@@ -14,41 +14,47 @@ function init() {
 
 function MyDom() { constructorCall(arguments, this); }
 
-MyDom.prototype.constructor = function() {
+method(MyDom, 'constructor', function() {
 	log('MyDom constructor called.');
 	this.children = [];
-}
+});
 
-MyDom.prototype.append = function(anotherMyDom) {
+method(MyDom, 'append', function(anotherMyDom) {
 	this.children.push(anotherMyDom);
-}
+});
+
+
 
 extend(MyCanvas, MyDom);
 function MyCanvas() { constructorCall(arguments, this); }
 
-MyCanvas.prototype.constructor = function() {
+method(MyCanvas, 'constructor', function() {
 	supercall(MyDom, 'constructor', this);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function method(Class, methodname, func) {
+	Class.prototype[methodname] = func;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function supercall(Class, methodname, context, args) {
 	Class.prototype[methodname].apply(context, args);
