@@ -23,18 +23,36 @@ MyDom.prototype.append = function(anotherMyDom) {
 	this.children.push(anotherMyDom);
 }
 
+extend(MyCanvas, MyDom);
 function MyCanvas() { constructorCall(arguments, this); }
 
-MyCanvas.prototype = new MyDom(null);
-
 MyCanvas.prototype.constructor = function() {
-	log('MyCanvas constructor called.');
-	MyDom.prototype.constructor.call(this);
+	supercall(MyDom, 'constructor', this);
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function supercall(Class, methodname, context, args) {
+	Class.prototype[methodname].apply(context, args);
+}
 
 function extend(Class1, Class2) {
 	Class1.prototype = new Class2(null);
